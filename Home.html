@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kanwara Portfolio</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Kanit", sans-serif;
+            color: #704f61;
+            background: linear-gradient(
+                135deg,
+                #f8c8dc,
+                #eebbea,
+                #c7e9f1
+            );
+            min-height: 100vh;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            width: 100%;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 34px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 3px 10px rgba(150, 90, 120, 0.2);
+        }
+
+        .menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 400;
+
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 50%;
+            bottom: -7px;
+
+            background: white;
+            transition: 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .menu a:hover {
+            color: #fff3f8;
+            transform: translateY(-2px);
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: calc(100vh - 80px);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 70px 8%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* decorative circles */
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .circle1 {
+            width: 220px;
+            height: 220px;
+            background: #ffb6d5;
+            top: 80px;
+            left: 5%;
+        }
+
+        .circle2 {
+            width: 180px;
+            height: 180px;
+            background: #b8e9f5;
+            bottom: 30px;
+            right: 7%;
+        }
+
+        .hero-card {
+            width: min(1100px, 100%);
+            min-height: 520px;
+
+            padding: 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+
+            position: relative;
+            z-index: 2;
+
+            background: rgba(255, 255, 255, 0.38);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 35px;
+
+            box-shadow:
+                0 25px 60px rgba(132, 82, 112, 0.18);
+
+            animation: fadeUp 1s ease;
+        }
+
+        /* ================= TEXT ================= */
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hello {
+            font-size: 42px;
+            color: #ef806e;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .name {
+            font-size: 27px;
+            color: #d96c74;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #8a6573;
+        }
+
+        .school {
+            margin-top: 3px;
+        }
+
+        .highlight {
+            margin-top: 20px;
+
+            display: inline-block;
+            padding: 9px 22px;
+
+            border-radius: 50px;
+
+            background: rgba(255, 255, 255, 0.55);
+            color: #dc8a65;
+
+            font-size: 17px;
+
+            box-shadow: 0 8px 20px rgba(180,100,130,0.12);
+        }
+
+
+        /* ================= PHOTO ================= */
+
+        .photo-container {
+            flex: 0 0 270px;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile {
+            width: 260px;
+            height: 260px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border: 8px solid rgba(255,255,255,0.75);
+
+            box-shadow:
+                0 15px 35px rgba(100,70,100,0.25);
+
+            transition: 0.5s;
+
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        .profile:hover {
+            transform: scale(1.06) rotate(2deg);
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .button {
+            display: inline-block;
+
+            margin-top: 28px;
+            padding: 12px 28px;
+
+            border-radius: 50px;
+
+            text-decoration: none;
+
+            color: white;
+            background: linear-gradient(
+                135deg,
+                #ed8e9f,
+                #d991c7
+            );
+
+            box-shadow: 0 8px 20px rgba(210,110,150,0.25);
+
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 13px 25px rgba(210,110,150,0.35);
+        }
+
+
+        /* ================= SECTIONS ================= */
+
+        section {
+            padding: 90px 8%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 34px;
+            color: #d56e87;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .card {
+            padding: 35px 25px;
+
+            border-radius: 25px;
+
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(12px);
+
+            border: 1px solid rgba(255,255,255,0.5);
+
+            box-shadow: 0 15px 35px rgba(130,80,110,0.12);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.55);
+        }
+
+        .card h3 {
+            color: #d66f86;
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .card p {
+            color: #8b6975;
+            line-height: 1.7;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            background: rgba(215,130,165,0.35);
+        }
+
+
+        /* ================= ANIMATION ================= */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 27px;
+            }
+
+            .menu {
+                gap: 12px;
+            }
+
+            .menu a {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 40px 5%;
+            }
+
+            .hero-card {
+                padding: 45px 25px;
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .photo-container {
+                flex: auto;
+            }
+
+            .profile {
+                width: 200px;
+                height: 200px;
+            }
+
+            .hello {
+                font-size: 34px;
+            }
+
+            .name {
+                font-size: 22px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .menu {
+                display: none;
+            }
+
+            .hero-card {
+                min-height: auto;
+            }
+
+            .profile {
+                width: 170px;
+                height: 170px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            Kanwara
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="#home">ประวัติ</a>
+            </li>
+
+            <li>
+                <a href="#skills">ทักษะ</a>
+            </li>
+
+            <li>
+                <a href="#works">ผลงาน</a>
+            </li>
+
+            <li>
+                <a href="#certificate">ใบประกาศ</a>
+            </li>
+
+            <li>
+                <a href="#activity">งานอดิเรก</a>
+            </li>
+
+            <li>
+                <a href="#contact">ติดต่อ</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= HOME ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+
+        <div class="hero-card">
+
+            <div class="hero-text">
+
+                <div class="hello">
+                    สวัสดีค่ะ 👋
+                </div>
+
+                <div class="name">
+                    นางสาวกัญญ์วรา สุขเสริม 💗
+                </div>
+
+                <div class="description">
+                    นักศึกษาวิชาเทคโนโลยีธุรกิจดิจิทัล
+                    <br>
+                    วิทยาลัยอาชีวศึกษาอุบลราชธานี
+                </div>
+
+                <div class="highlight">
+                    ✨ ยินดีที่ได้รู้จักนะคะ!
+                </div>
+
+                <br>
+
+                <a href="#contact" class="button">
+                    ติดต่อฉัน 💌
+                </a>
+
+            </div>
+
+
+            <div class="photo-container">
+
+                <!-- เปลี่ยนชื่อไฟล์รูปตรงนี้ -->
+                <img
+                    src="26777.jpg"
+                    alt="Kanwara"
+                    class="profile"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SKILLS ================= -->
+
+    <section id="skills">
+
+        <h2 class="section-title">
+            🌷 ทักษะของฉัน
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>💻 เทคโนโลยี</h3>
+                <p>
+                    สามารถใช้งานคอมพิวเตอร์
+                    และโปรแกรมพื้นฐานด้านเทคโนโลยีได้
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🎨 การออกแบบ</h3>
+                <p>
+                    สนใจการออกแบบเว็บไซต์
+                    กราฟิก และสื่อดิจิทัล
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🤝 การทำงาน</h3>
+                <p>
+                    สามารถทำงานร่วมกับผู้อื่น
+                    และเรียนรู้สิ่งใหม่ ๆ ได้
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WORKS ================= -->
+
+    <section id="works">
+
+        <h2 class="section-title">
+            🎀 ผลงาน
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🌸 Website</h3>
+                <p>
+                    ผลงานการออกแบบและพัฒนาเว็บไซต์
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🎨 Graphic Design</h3>
+                <p>
+                    ผลงานด้านการออกแบบกราฟิก
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📱 Digital Media</h3>
+                <p>
+                    ผลงานด้านสื่อดิจิทัล
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CERTIFICATE ================= -->
+
+    <section id="certificate">
+
+        <h2 class="section-title">
+            🏆 ใบประกาศนียบัตร
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🏅 Certificate 01</h3>
+                <p>
+                    ใบประกาศนียบัตรกิจกรรม
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🏅 Certificate 02</h3>
+                <p>
+                    ใบประกาศนียบัตรการอบรม
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🏅 Certificate 03</h3>
+                <p>
+                    ใบประกาศนียบัตรผลงาน
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HOBBY ================= -->
+
+    <section id="activity">
+
+        <h2 class="section-title">
+            🧸 งานอดิเรก
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🎧 ฟังเพลง</h3>
+                <p>
+                    ชอบฟังเพลงในเวลาว่าง
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📷 ถ่ายรูป</h3>
+                <p>
+                    ชอบถ่ายภาพและเก็บความทรงจำ
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🌿 ท่องเที่ยว</h3>
+                <p>
+                    ชอบออกไปเที่ยวและเปิดประสบการณ์ใหม่ ๆ
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section id="contact">
+
+        <h2 class="section-title">
+            💌 ติดต่อ
+        </h2>
+
+        <div class="card" style="max-width:600px;margin:auto;">
+
+            <h3>
+                ขอบคุณที่เข้ามาเยี่ยมชมเว็บไซต์ค่ะ 💕
+            </h3>
+
+            <p>
+                สามารถติดต่อฉันผ่านช่องทางต่าง ๆ
+                ได้ที่นี่
+            </p>
+
+            <br>
+
+            <p>
+                📧 Email: ---
+            </p>
+
+            <p>
+                📱 โทร: 093-128-1063
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        © 2026 Kanwara Portfolio 💗
+
+    </footer>
+
+
+</body>
+</html>
+
